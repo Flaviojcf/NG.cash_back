@@ -1,13 +1,13 @@
 import { hash } from "bcrypt";
 import { prisma } from "../../../../database/prismaClient";
 
-interface CreateUserAccountUseCaseProps {
+interface CreateUserUseCaseProps {
   username: string;
   password: string;
 }
 
-export class CreateUserAccountUseCase {
-  async execute({ username, password }: CreateUserAccountUseCaseProps) {
+export class CreateUserUseCase {
+  async execute({ username, password }: CreateUserUseCaseProps) {
     const accountAlreadyExists = await prisma.users.findFirst({
       where: {
         username,
@@ -20,25 +20,31 @@ export class CreateUserAccountUseCase {
         password.search(".*(?=.{8,}).*") !== -1 &&
         password.search(".*[A-Z].*") !== -1 &&
         password.search(".*[0-9].*") !== -1;
-      
 
       const isUsernameInCorrectFormat = username.search(".*(?=.{3,}).*") !== -1;
 
       if (!isPasswordInCorrectFormat) {
         throw new Error("Password in wrong format");
-      }
-      else if(!isUsernameInCorrectFormat) {
+      } else if (!isUsernameInCorrectFormat) {
         throw new Error("Username in wrong format");
       }
 
       const hashPassword = await hash(password, 10);
-      const account = await prisma.users.create({
+      const account = await prisma.accounts.create({
+        data: {
+          balance: 100,
+        },
+      });
+
+      const user = await prisma.users.create({
         data: {
           username,
           password: hashPassword,
+          accounts_id: account.id,
         },
       });
-      return account;
+
+      return user;
     }
   }
 }

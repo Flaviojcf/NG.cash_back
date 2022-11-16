@@ -1,10 +1,8 @@
-import {Router} from "express"
-import { CreateUserAccountController } from "./modules/account/useCases/createUserAccount/CreateUserAccountController";
-
+import { Router } from "express";
+import { CreateUserController } from "./modules/account/useCases/createUserAccount/CreateUserController";
 
 export const routes = Router();
 
-const createUserAccountController = new CreateUserAccountController()
+const createUserController = new CreateUserController();
 
-
-routes.post("/createUserAccount", createUserAccountController.handle)
+routes.post("/createUserAccount", createUserController.handle);
