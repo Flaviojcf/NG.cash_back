@@ -30,6 +30,7 @@ export class CreateUserUseCase {
       }
 
       const hashPassword = await hash(password, 10);
+
       const account = await prisma.accounts.create({
         data: {
           balance: 100,
@@ -44,7 +45,7 @@ export class CreateUserUseCase {
         },
       });
 
-      return user;
+      return { user: user, balance: account.balance };
     }
   }
 }
