@@ -21,13 +21,21 @@ export class AuthenticateUserUseCase {
       verifyIfUserExists.password
     );
 
+    const id = verifyIfUserExists.accounts_id as string;
+
+    const getAccount = await prisma.accounts.findFirst({
+      where: {
+        id,
+      },
+    });
+
     if (!isPasswordMatch) {
       throw new Error("Password invalid");
     }
-    const token = sign({ username }, verifyIfUserExists.password, {
+    const token = sign({ username }, 'eae694fc09c8f40eada175e66c50ec14', {
       subject: verifyIfUserExists.username,
-      expiresIn: "1d",
+      expiresIn: 60 * 60 * 24,
     });
-    return token;
+    return { token: token, account: getAccount, username:verifyIfUserExists.username };
   }
 }

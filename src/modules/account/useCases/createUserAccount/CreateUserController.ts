@@ -9,7 +9,7 @@ export class CreateUserController {
 
     try {
       const result = await createUserUseCase.execute({
-        username,
+        username: username.toUpperCase(),
         password,
       });
       return response.json(result);

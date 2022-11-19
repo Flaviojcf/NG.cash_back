@@ -20,7 +20,19 @@ model Users {
 
 model Accounts {
   id      String @id @default(uuid())
-  balance Float  @default(0.00)
+  balance Float
 
-  Users Users?
+  Users               Users?
+  TransactionsCredted Transactions[] @relation("creditedAccount")
+  TransactionsDebited Transactions[] @relation("debitedAccount")
+}
+
+model Transactions {
+  id                String   @id @default(uuid())
+  debitedAccountId  String
+  creditedAccountId String
+  credited          Accounts @relation(fields: [creditedAccountId], references: [id], name: "creditedAccount")
+  debited           Accounts @relation(fields: [debitedAccountId], references: [id], name: "debitedAccount")
+  value             Float
+  createdAt         DateTime @default(now())
 }
