@@ -14,6 +14,7 @@ export class CreateTransactionsUseCase {
   }: CreateTransactionsUseCaseProps) {
     const userNameCredited = creditedAccountUser;
 
+
     const getDebitedAccount = await prisma.accounts.findFirst({
       where: {
         id: debitedAccountId,

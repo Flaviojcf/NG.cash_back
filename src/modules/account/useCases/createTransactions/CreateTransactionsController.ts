@@ -5,6 +5,7 @@ export class CreateTransactionsController {
   async handle(request: Request, response: Response) {
     const { creditedAccountUser, value } = request.body;
     const { debitedAccountId } = request;
+    
 
     const createTransactionsUseCase = new CreateTransactionsUseCase();
 
