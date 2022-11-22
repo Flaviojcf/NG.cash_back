@@ -11,9 +11,13 @@
 # ROTAS DA APLICAÇÃO
 
 1 => /createUserAccount
+
 2 => /authenticateUser
+
 3 => /createTransaction
+
 4 => /getUserTransactions
+
 5 => /getUserBalance
 
 # COMO USAR AS ROTAS DA APLICAÇÃO
