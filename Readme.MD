@@ -1,5 +1,11 @@
 # NG.CASH_BACK
 
+# Link para o github
+
+backend => https://github.com/Flaviojcf/NG.cash_back
+
+frontend => https://github.com/Flaviojcf/NG.cash_front
+
 # Instale as dependências com o comando abaixo:
 
 => yarn install
