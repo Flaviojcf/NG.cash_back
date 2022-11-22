@@ -64,7 +64,7 @@ Ex: {
 Ex: {
 "username": "TESTE1",
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - /getUserBalance => É necessário passar um objeto com o nome do usuário. Também é preciso informar o token de autenticação no header da aplicação, do tipo 'Bearer'.
 
 Ex: {
