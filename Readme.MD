@@ -1,72 +1,77 @@
 # NG.CASH_BACK
 
-# Link para o github
+## Repositórios do GitHub
 
-backend => https://github.com/Flaviojcf/NG.cash_back
+- Backend: [NG.cash_back](https://github.com/Flaviojcf/NG.cash_back)
+- Frontend: [NG.cash_front](https://github.com/Flaviojcf/NG.cash_front)
 
-frontend => https://github.com/Flaviojcf/NG.cash_front
+## Instalação
 
-# Instale as dependências com o comando abaixo:
+Para instalar as dependências, utilize o seguinte comando:
+yarn install
 
-=> yarn install
+## Execução da Aplicação
 
-# Rode a aplicação com o comando abaixo:
+Para rodar a aplicação, utilize o seguinte comando:
+yarn dev
 
-=> yarn dev
 
-# ROTAS DA APLICAÇÃO
+## Rotas da Aplicação
 
-1 => /createUserAccount
+1. **/createUserAccount**: Cria uma conta de usuário. É necessário passar um objeto com o nome de usuário (todas as letras maiúsculas) e senha.
 
-2 => /authenticateUser
+    Exemplo de requisição:
+    ```json
+    {
+      "username": "TESTE",
+      "password": "12345678T"
+    }
+    ```
 
-3 => /createTransaction
+    - Regras:
+      - O username precisa ter no mínimo 3 caracteres.
+      - A senha precisa ter no mínimo 8 caracteres, incluindo pelo menos um número e uma letra maiúscula.
 
-4 => /getUserTransactions
+2. **/authenticateUser**: Autentica um usuário. É necessário passar um objeto com o nome de usuário e senha previamente cadastrados.
 
-5 => /getUserBalance
+    Exemplo de requisição:
+    ```json
+    {
+      "username": "TESTE",
+      "password": "12345678T"
+    }
+    ```
 
-# COMO USAR AS ROTAS DA APLICAÇÃO
+    Após a autenticação, um token será gerado.
 
-- /createUserAccount => É necessário passar um objeto com o usuário(todas as letras maiúsculas) e senha.
+3. **/createTransaction**: Cria uma transação. É necessário passar um objeto com o nome de usuário que irá receber a transferência e o valor da transação. O token de autenticação deve ser enviado no cabeçalho da requisição, no formato 'Bearer'.
 
-Ex: {
-"username": "TESTE",
-"password": 12345678T"
-}.
+    Exemplo de requisição:
+    ```json
+    {
+      "creditedAccountUser": "TESTE2",
+      "value": 2
+    }
+    ```
 
-- As seguintes regras são necessárias:
-  O username precisa ser composto por, pelo menos, 3 caracteres.
-  A Password precisa ser composta por pelo menos 8 caracteres, um número e uma letra maiúscula.
+4. **/getUserTransactions**: Obtém as transações de um usuário. É necessário passar um objeto com o nome do usuário. O token de autenticação deve ser enviado no cabeçalho da requisição, no formato 'Bearer'.
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Exemplo de requisição:
+    ```json
+    {
+      "username": "TESTE1"
+    }
+    ```
 
-- /authenticateUser => É necessário passar um objeto com o usuário e senha cadastrados anteriormente.
-  Ex: {
-  "username": "TESTE",
-  "password": 12345678T"
-  }.
-  Após isso um token de autenticação será gerado.
+5. **/getUserBalance**: Obtém o saldo de um usuário. É necessário passar um objeto com o nome do usuário. O token de autenticação deve ser enviado no cabeçalho da requisição, no formato 'Bearer'.
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Exemplo de requisição:
+    ```json
+    {
+      "username": "TESTE1"
+    }
+    ```
 
-- /createTransaction => É necessário passar um objeto com o usuário e valor que irá receber a transferência. Também é preciso informar o token de autenticação no header da aplicação, do tipo 'Bearer'.
+Por favor, sinta-se à vontade para contribuir ou relatar problemas nos repositórios do GitHub correspondentes.
 
-Ex: {
-"creditedAccountUser": "TESTE2",
-"value": 2
-}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-- /getUserTransactions => É necessário passar um objeto com o nome do usuário. Também é preciso informar o token de autenticação no header da aplicação, do tipo 'Bearer'.
-
-Ex: {
-"username": "TESTE1",
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-- /getUserBalance => É necessário passar um objeto com o nome do usuário. Também é preciso informar o token de autenticação no header da aplicação, do tipo 'Bearer'.
-
-Ex: {
-"username": "TESTE1",
-}
